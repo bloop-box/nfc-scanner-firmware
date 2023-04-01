@@ -1,5 +1,7 @@
 # Bloop NFC Scanner Firmware
 
+[![CI](https://github.com/bloop-box/nfc-scanner-firmware/actions/workflows/ci.yml/badge.svg)](https://github.com/bloop-box/nfc-scanner-firmware/actions/workflows/ci.yml)
+
 Firmware for the Bloop NFC Scanner running on RP2040.
 
 ## Usage
