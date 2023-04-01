@@ -14,8 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: dtolnay/rust-toolchain@stable
-      - run: sudo apt-get install libasound2-dev
+      - uses: dtolnay/rust-toolchain@nightly-2023-02-07
       - run: cargo check
 
   fmt:
@@ -23,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: dtolnay/rust-toolchain@stable
+      - uses: dtolnay/rust-toolchain@nightly-2023-02-07
         with:
           components: rustfmt
       - run: cargo fmt --all -- --check
@@ -33,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: dtolnay/rust-toolchain@stable
+      - uses: dtolnay/rust-toolchain@nightly-2023-02-07
         with:
           components: clippy
       - run: cargo clippy -- -D warnings
@@ -52,7 +51,7 @@ jobs:
           persist-credentials: false
 
       - name: Install Rust Stable
-        uses: dtolnay/rust-toolchain@stable
+        uses: dtolnay/rust-toolchain@nightly-2023-02-07
 
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v3
