@@ -2,6 +2,7 @@
 
 VERSION="$1"
 
+apt install libudev-dev
 rustup target add thumbv6m-none-eabi
 cargo install elf2uf2-rs
 
