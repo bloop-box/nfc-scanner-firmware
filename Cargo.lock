@@ -323,6 +323,7 @@ version = "0.1.1"
 source = "git+https://github.com/embassy-rs/embassy#52cab3a9f4f1a14b47454d38a96f01b14e688c9f"
 dependencies = [
  "atomic-polyfill 1.0.2",
+ "cortex-m",
  "critical-section",
  "defmt",
  "embassy-macros",
