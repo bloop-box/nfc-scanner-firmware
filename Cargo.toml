@@ -1,7 +1,10 @@
 [package]
 name = "bloop-nfc-scanner"
+description = "Bloop NFC Scanner Firmware"
 version = "1.0.0"
+authors = ["Ben Scholzen (DASPRiD) <mail@dasprids.de>"]
 edition = "2021"
+readme = "README.md"
 license-file = "LICENSE"
 
 [dependencies]
