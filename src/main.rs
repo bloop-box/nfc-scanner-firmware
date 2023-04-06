@@ -1,3 +1,8 @@
+// Copyright (c) 2023, Bloop Box. All rights reserved.
+// Authors: Ben Scholzen (DASPRiD) <mail@dasprids.de>
+//
+// Licensed under the BSD 2-Clause license. See LICENSE file in the project root for full license information.
+
 #![no_std]
 #![no_main]
 #![feature(type_alias_impl_trait)]
