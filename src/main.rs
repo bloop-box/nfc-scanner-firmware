@@ -15,6 +15,7 @@ use embassy_futures::select::{select, Either};
 use embassy_rp::spi::Spi;
 use embassy_rp::usb::Driver;
 use embassy_rp::{gpio, interrupt, spi};
+use embassy_rp::gpio::{Input, Pull};
 use embassy_sync::blocking_mutex::raw::CriticalSectionRawMutex;
 use embassy_sync::signal::Signal;
 use embassy_time::{block_for, Duration, Timer};
@@ -33,6 +34,7 @@ async fn main(_spawner: Spawner) {
     let p = embassy_rp::init(Default::default());
     let _power_led = Output::new(p.PIN_25, Level::High);
     let mut status_led = Output::new(p.PIN_16, Level::Low);
+    let mode_switch = Input::new(p.PIN_22, Pull::Up);
 
     // HID Keyboard initialization
     let irq = interrupt::take!(USBCTRL_IRQ);
@@ -147,7 +149,11 @@ async fn main(_spawner: Spawner) {
 
             hex::encode_to_slice(padded_uid, &mut buffer).unwrap();
 
-            send_keypress(&mut writer, 24, 1 | 2 | 4).await;
+            let send_hotkey = mode_switch.is_high();
+
+            if send_hotkey {
+                send_keypress(&mut writer, 24, 1 | 2 | 4).await;
+            }
 
             for char in buffer.iter().take(uid_bytes.len() * 2) {
                 let keycode = if *char == 48 {
@@ -161,7 +167,9 @@ async fn main(_spawner: Spawner) {
                 send_keypress(&mut writer, keycode, 0).await;
             }
 
-            send_keypress(&mut writer, 7, 1 | 2 | 4).await;
+            if send_hotkey {
+                send_keypress(&mut writer, 7, 1 | 2 | 4).await;
+            }
 
             loop {
                 Timer::after(Duration::from_millis(150)).await;
