@@ -90,10 +90,10 @@ async fn main(_spawner: Spawner) {
 
     // NFC Reader initialization
     let miso = p.PIN_4;
-    let mosi = p.PIN_3;
-    let clk = p.PIN_2;
+    let mosi = p.PIN_7;
+    let clk = p.PIN_6;
     let touch_cs = p.PIN_5;
-    let touch_reset = p.PIN_7;
+    let touch_reset = p.PIN_2;
 
     let mut reset = Output::new(touch_reset, Level::Low);
     Timer::after(Duration::from_micros(1)).await;

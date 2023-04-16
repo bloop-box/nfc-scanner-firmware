@@ -21,7 +21,7 @@ For integration into browser environments we provide an easy to use
 
 ## Development
 
-- Install probe-run: https://crates.io/crates/probe-run
+- Install probe-run: `cargo install probe-run --version=0.3.6 --locked`
 - Add target: `rustup target add thumbv6m-none-eabi`
 - Run code against a probe: `cargo run`
 
