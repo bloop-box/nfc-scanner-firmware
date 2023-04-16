@@ -31,7 +31,8 @@ static SUSPENDED: AtomicBool = AtomicBool::new(false);
 #[embassy_executor::main]
 async fn main(_spawner: Spawner) {
     let p = embassy_rp::init(Default::default());
-    let mut led = Output::new(p.PIN_16, Level::High);
+    let _power_led = Output::new(p.PIN_25, Level::High);
+    let mut status_led = Output::new(p.PIN_16, Level::Low);
 
     // HID Keyboard initialization
     let irq = interrupt::take!(USBCTRL_IRQ);
@@ -105,7 +106,6 @@ async fn main(_spawner: Spawner) {
     let spi = Spi::new_blocking(p.SPI0, clk, mosi, miso, config);
     let cs = Output::new(touch_cs, Level::Low);
 
-    led.set_high();
     let mut mfrc522 = Mfrc522::new(spi)
         .with_nss(cs)
         .with_delay(|| block_for(Duration::from_micros(1)))
@@ -128,7 +128,7 @@ async fn main(_spawner: Spawner) {
             };
 
             info!("SCANNED");
-            led.set_low();
+            status_led.set_high();
 
             if SUSPENDED.load(Ordering::Acquire) {
                 info!("Triggering remote wakeup");
@@ -180,7 +180,7 @@ async fn main(_spawner: Spawner) {
                 }
             }
 
-            led.set_high();
+            status_led.set_low();
             info!("RELEASED");
         }
     };
