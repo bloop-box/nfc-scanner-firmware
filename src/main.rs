@@ -158,7 +158,7 @@ async fn main(_spawner: Spawner) {
             for char in buffer.iter().take(uid_bytes.len() * 2) {
                 let keycode = if *char == 48 {
                     39
-                } else if *char <= 56 {
+                } else if *char <= 57 {
                     char - 19
                 } else {
                     char - 93
