@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/bloop-box/nfc-scanner-firmware/compare/v1.1.0...v1.1.1) (2023-07-30)
+
+
+### Bug Fixes
+
+* include digit 9 in keycode generation ([6235b0d](https://github.com/bloop-box/nfc-scanner-firmware/commit/6235b0d65e3318998c5bfc898126cef97a1306b9))
+
 # [1.1.0](https://github.com/bloop-box/nfc-scanner-firmware/compare/v1.0.0...v1.1.0) (2023-04-16)
 
 
