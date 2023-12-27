@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/bloop-box/nfc-scanner-firmware/compare/v1.1.1...v1.1.2) (2023-12-27)
+
+
+### Bug Fixes
+
+* send modifier keys before keycode, fixes macOS detection ([28bbfdc](https://github.com/bloop-box/nfc-scanner-firmware/commit/28bbfdc4c68f16863b8185f966a002eefe238311))
+
 ## [1.1.1](https://github.com/bloop-box/nfc-scanner-firmware/compare/v1.1.0...v1.1.1) (2023-07-30)
 
 
