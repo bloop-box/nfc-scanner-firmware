@@ -205,6 +205,19 @@ async fn send_keypress<'a, I: embassy_rp::usb::Instance>(
     keycode: u8,
     modifier: u8,
 ) {
+    if modifier > 0 {
+        let report = KeyboardReport {
+            keycodes: [0, 0, 0, 0, 0, 0],
+            leds: 0,
+            modifier,
+            reserved: 0,
+        };
+        match writer.write_serialize(&report).await {
+            Ok(()) => {}
+            Err(e) => warn!("Failed to send report: {:?}", e),
+        };
+    }
+
     let report = KeyboardReport {
         keycodes: [keycode, 0, 0, 0, 0, 0],
         leds: 0,
